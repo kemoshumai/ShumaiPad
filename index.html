@@ -49,13 +49,20 @@
 <body>
     <h1>ShumaiPad</h1>
     <div class="board">
-        <p id="result_text">Here you can see the results of the voice recognition.</p>
-        <small>For CP and CPT</small>
+        <p id="result_text">
+                <span lang="en">Here you can see the results of the voice recognition.</span>
+                <span lang="ja">音声認識した結果がここに表示されます。</span>
+            </p>
+        <small lang="en">For CP and CPT</small>
+        <small lang="ja">対応バージョン：CP,CPT</small>
     </div>
     <section class="statusarea">
-        <p id="status">Booted.</p>
-        <button>START</button>
+        <p id="status" lang="en">Booted.</p>
+        <p id="status" lang="ja">起動完了</p>
+        <button onclick="recognize();" lang="en">START</button>
+        <button onclick="recognize();" lang="ja">はじめる</button>
     </section>
+    <script src="./src/i18n.js"></script>
     <script src="./src/mainscript.js"></script>
 </body>
 </html>

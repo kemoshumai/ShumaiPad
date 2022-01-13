@@ -1,25 +1,24 @@
+setLanguage(['ja','en'].includes(navigator.language) ? navigator.language : 'en');
 let flag_speech = false;
 
-const setStatusText = text => document.getElementById('status').innerHTML = text;
-const button = document.querySelector('button');
-
 const recognize = () => {
+    const setStatusText = text => document.querySelector('#status:not([hidden])').innerHTML = text;
     window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
     const recognition = new webkitSpeechRecognition();
     recognition.lang = 'ja';
     recognition.interimResults = true;
     recognition.continuous = true;
 
-    recognition.onsoundstart = () => setStatusText("Recognizing...");
-    recognition.onnomatch = () => setStatusText("Try again!");
+    recognition.onsoundstart = () => setStatusText(i18n("Recognizing..."));
+    recognition.onnomatch = () => setStatusText(i18n("Try again!"));
     
     recognition.onerror = () =>  {
-        setStatusText("Error occurred!");
+        setStatusText(i18n("Error occurred!"));
         if (flag_speech == false) recognize();
     };
 
     recognition.onsoundend = function () {
-        setStatusText("Stopped.");
+        setStatusText(i18n("Stopped."));
         recognize();
     };
 
@@ -27,17 +26,16 @@ const recognize = () => {
         const {results} = event;
         for (let i = event.resultIndex; i < results.length; i++) {
             if (results[i].isFinal) {
-                document.getElementById('result_text').innerHTML = results[i][0].transcript;
+                document.querySelector('#result_text:not([hidden])').innerHTML = results[i][0].transcript;
                 recognize();
             }
             else {
-                document.getElementById('result_text').innerHTML = "[proposal:] " + results[i][0].transcript;
+                document.querySelector('#result_text:not([hidden])').innerHTML = "[proposal:] " + results[i][0].transcript;
                 flag_speech = true;
             }
         }
     }
     flag_speech = false;
-    setStatusText("start");
+    setStatusText(i18n("Listening..."));
     recognition.start();
 }
-button.onclick = () => recognize();
