@@ -1,12 +1,14 @@
 setLanguage(['ja','en'].includes(navigator.language) ? navigator.language : 'en');
 let flag_speech = false;
 
+let rec_lang = "ja";
+
 const recognize = () => {
     const setStatusText = text => document.querySelector('#status:not([hidden])').innerHTML = text;
     const resultTextElement = document.querySelector('#result_text:not([hidden])');
     window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
     const recognition = new webkitSpeechRecognition();
-    recognition.lang = 'ja';
+    recognition.lang = rec_lang;
     recognition.interimResults = true;
     recognition.continuous = true;
 
@@ -42,3 +44,16 @@ const recognize = () => {
     setStatusText(i18n("Listening..."));
     recognition.start();
 }
+
+
+const updateLanguageByText = () => document.querySelector('#lang_select_by_text').hidden = document.querySelector("#language_selector").value != "_not_";
+
+const OnChangeLanguageSelector = ()=>updateLanguageByText();
+
+const apply = ()=>{
+    const {value} = document.querySelector('#language_selector');
+    rec_lang = value != "_not_" ? value : document.querySelector('#lang_select_by_text').value;
+    recognize();
+}
+
+updateLanguageByText();

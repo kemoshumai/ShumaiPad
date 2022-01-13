@@ -32,7 +32,7 @@
         }
         .statusarea{
             text-align: center;
-            font-size: 2em;
+            font-size: 1.6em;
             margin: 10px;
             padding: 0;
         }
@@ -41,7 +41,17 @@
             padding: 0;
         }
         .statusarea button{
-            font-size: 1.5em;
+            font-size: 0.8em;
+        }
+        .language-selector span{
+            font-size: 0.6em;
+            margin:0;
+            padding: 0;
+        }
+        .language-selector select{
+            font-size: 0.6em;
+            margin:0;
+            padding: 0;
         }
         .proposal{
             color: gray;
@@ -96,8 +106,24 @@
     <section class="statusarea">
         <p id="status" lang="en">Booted.</p>
         <p id="status" lang="ja">起動完了</p>
-        <button onclick="recognize();" lang="en">START</button>
-        <button onclick="recognize();" lang="ja">はじめる</button>
+        <div class="language-selector">
+            <label for="select">
+                <span lang="ja">音声認識の言語</span>
+                <span lang="en">Language</span>
+            </label>
+            <select id="language_selector" onchange="OnChangeLanguageSelector();">
+                <option value="ja" selected>日本語(JA)</option>
+                <option value="en">English(EN)</option>
+                <option value="zh-Hans">简体字(zh-Hans)</option>
+                <option value="zh-Hant">繁體字(zh-Hant)</option>
+                <option value="ko">한국어(KO)</option>
+                <option value="ru">русский язык(RU)</option>
+                <option value="_not_">Not on the list.</option>
+            </select>
+            <input type="text" id="lang_select_by_text" placeholder="Language Code Here...">
+        </div>
+        <button onclick="apply();" lang="en">APPLY AND START</button>
+        <button onclick="apply();" lang="ja">適応して始める</button>
     </section>
     <section>
         <div class="box25 caution">
