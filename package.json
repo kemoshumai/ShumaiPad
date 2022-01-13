@@ -3,5 +3,8 @@
   "version": "0.1.0",
   "main": "app.js",
   "author": "kemoshumai <87066961+kemoshumai@users.noreply.github.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "carlo": "^0.9.46"
+  }
 }
