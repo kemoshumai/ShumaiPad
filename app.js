@@ -1,5 +1,4 @@
 const carlo = require('carlo');
-const path = require('path');
 
 
 const main = async () => {
