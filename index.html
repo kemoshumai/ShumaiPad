@@ -1,20 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
     <title>ShumaiPad v0.1.0</title>
+    <style>
+        body h1{
+            text-align: center;
+            font-family: sans-serif;
+        }
+        .board{
+            display: flex;
+            flex-flow: column;
+            margin: 0 auto;
+            width: 350px;
+            min-height: 200px;
+            background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+            box-shadow: 0 2px 5px #ccc;
+        }
+        .board p{
+            flex: 1;
+            margin: 0;
+            padding: 10px;
+            font-size: 1.3em;
+        }
+        .board small{
+            width: 100%;
+            margin: 0;
+            padding: 5px 10px;
+        }
+        #status{
+            text-align: center;
+            font-size: 2em;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>ShumaiPad for CP and CPT.</h1>
-    <textarea id="result_text" cols="100" rows="10">
-    </textarea>
+    <h1>ShumaiPad</h1>
+    <div class="board">
+        <p id="result_text">Here you can see the results of the voice recognition.</p>
+        <small>For CP and CPT</small>
+    </div>
     <br>
-    <textarea id="status" cols="100" rows="1">
-    </textarea>
+    <p id="status">Booted.</p>
     <br>
-    <input type="button" onClick="recognize();" value="Start Speech Recognition!">
+    <button>START</button>
     <script src="./src/mainscript.js"></script>
 </body>
 </html>

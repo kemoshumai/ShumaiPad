@@ -1,6 +1,7 @@
 let flag_speech = false;
 
 const setStatusText = text => document.getElementById('status').innerHTML = text;
+const button = document.querySelector('button');
 
 const recognize = () => {
     window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
@@ -39,3 +40,4 @@ const recognize = () => {
     setStatusText("start");
     recognition.start();
 }
+button.onclick = () => recognize();
