@@ -46,6 +46,40 @@
         .proposal{
             color: gray;
         }
+
+        /* https://saruwakakun.com/html-css/reference/box */
+        .box25{
+            position: relative;
+            background: #fff0cd;
+            box-shadow: 0px 0px 0px 5px #fff0cd;
+            border: dashed 2px white;
+            padding: 0.2em 0.5em;
+            color: #454545;
+        }
+        .box25:after{
+            position: absolute;
+            content: '';
+            right: -7px;
+            top: -7px;
+            border-width: 0 15px 15px 0;
+            border-style: solid;
+            border-color: #ffdb88 #fff #ffdb88;
+            box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15);
+        }
+        .box25 p {
+            margin: 0; 
+            padding: 0;
+        }
+        /*  */
+        .caution{
+            margin: 0px auto;
+            margin-top: 20px;
+            width: 90%;
+            max-width: 350px;
+        }
+        .caution h4{
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -64,6 +98,22 @@
         <p id="status" lang="ja">起動完了</p>
         <button onclick="recognize();" lang="en">START</button>
         <button onclick="recognize();" lang="ja">はじめる</button>
+    </section>
+    <section>
+        <div class="box25 caution">
+            <h4 lang="ja">注意事項</h4>
+            <h4 lang="en">CAUTION!</h4>
+            <ul lang="ja">
+                <li>これは実験的な機能です。突然使えなくなることもあるかもしれません。</li>
+                <li>音声はGoogleChromeのSpeechRecognitionによってサーバーで処理されます。ためらわれる場合使用をやめてください。</li>
+                <li>自己責任で使用してください。</li>
+            </ul>
+            <ul lang="en">
+                <li>This is experimental features.</li>
+                <li>You speech is processed on the server by Google Chrome's SpeechRecognition. If you have any hesitation, please stop using it.</li>
+                <li>Use at your own risk.</li>
+            </ul>
+        </div>
     </section>
     <script src="./src/i18n.js"></script>
     <script src="./src/mainscript.js"></script>
