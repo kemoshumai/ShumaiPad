@@ -3,6 +3,7 @@ let flag_speech = false;
 
 const recognize = () => {
     const setStatusText = text => document.querySelector('#status:not([hidden])').innerHTML = text;
+    const resultTextElement = document.querySelector('#result_text:not([hidden])');
     window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
     const recognition = new webkitSpeechRecognition();
     recognition.lang = 'ja';
@@ -26,11 +27,13 @@ const recognize = () => {
         const {results} = event;
         for (let i = event.resultIndex; i < results.length; i++) {
             if (results[i].isFinal) {
-                document.querySelector('#result_text:not([hidden])').innerHTML = results[i][0].transcript;
+                resultTextElement.setAttribute("class","");
+                resultTextElement.innerHTML = results[i][0].transcript;
                 recognize();
             }
             else {
-                document.querySelector('#result_text:not([hidden])').innerHTML = "[proposal:] " + results[i][0].transcript;
+                resultTextElement.setAttribute("class","proposal");
+                resultTextElement.innerHTML = results[i][0].transcript;
                 flag_speech = true;
             }
         }
