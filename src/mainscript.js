@@ -53,6 +53,7 @@ const OnChangeLanguageSelector = ()=>updateLanguageByText();
 const apply = ()=>{
     const {value} = document.querySelector('#language_selector');
     rec_lang = value != "_not_" ? value : document.querySelector('#lang_select_by_text').value;
+    document.querySelector('#result_text:not([hidden])').innerHTML = "";
     recognize();
 }
 
