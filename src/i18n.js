@@ -19,11 +19,11 @@ const i18n = (text) => {
 const langDictionary = {
     "Recognizing...":{
         "en":"Recognizing...",
-        "ja":"認識中"
+        "ja":"聞き取り中"
     },
     "Try again!":{
         "en":"Try again!",
-        "ja":"認識中"
+        "ja":"再試行してください…"
     },
     "Error occurred!":{
         "en":"Error occurred!",
@@ -35,6 +35,6 @@ const langDictionary = {
     },
     "Listening...":{
         "en":"Listening...",
-        "ja":"聞き取り中"
+        "ja":"音声入力受付中"
     }
 }
