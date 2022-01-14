@@ -1,4 +1,6 @@
 const carlo = require('carlo');
+const { rpc } = require('carlo/rpc');
+const RPCHandle = require('./src/RPCHandle');
 
 
 const main = async () => {
@@ -10,7 +12,7 @@ const main = async () => {
     app.on('exit', () => process.exit());
     app.serveFolder(__dirname);
     await app.exposeFunction('env', _ => process.env);
-    await app.load("index.html");
+    await app.load("index.html",rpc.handle(new RPCHandle));
 
 }
 

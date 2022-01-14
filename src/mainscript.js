@@ -58,3 +58,9 @@ const apply = ()=>{
 }
 
 updateLanguageByText();
+
+
+(async()=>{
+    const [backend] = await carlo.loadParams();
+    backend.sendMessageToVRC("aaa","bbb");
+})();
