@@ -37,6 +37,7 @@ const recognize = () => {
             if (results[i].isFinal) {
                 resultTextElement.setAttribute("class","");
                 resultTextElement.innerHTML = results[i][0].transcript;
+                OnRecognitionResult(results[i][0].transcript);
                 recognize();
             }
             else {
@@ -64,3 +65,10 @@ const apply = ()=>{
 }
 
 updateLanguageByText();
+
+
+
+
+const OnRecognitionResult = (text) => {
+    backend.sendMessageToVRC(text,"");
+}
