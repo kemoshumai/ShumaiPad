@@ -56,6 +56,16 @@
         .proposal{
             color: gray;
         }
+        .translate-selector span{
+            font-size: 0.6em;
+            margin:0;
+            padding: 0;
+        }
+        .translate-selector select{
+            font-size: 0.6em;
+            margin:0;
+            padding: 0;
+        }
 
         /* https://saruwakakun.com/html-css/reference/box */
         .box25{
@@ -118,9 +128,30 @@
                 <option value="zh-Hant">繁體字(zh-Hant)</option>
                 <option value="ko">한국어(KO)</option>
                 <option value="ru">русский язык(RU)</option>
+                <option value="fr">français(FR)</option>
+                <option value="de">Deutsch(DE)</option>
                 <option value="_not_">Not on the list.</option>
             </select>
             <input type="text" id="lang_select_by_text" placeholder="Language Code Here...">
+        </div>
+        <div class="translate-selector">
+            <label for="select">
+                <span lang="ja">翻訳先の言語</span>
+                <span lang="en">Translate into</span>
+            </label>
+            <select id="translate_selector" onchange="OnChangeTranslateSelector();">
+                <option value="ja">日本語(JA)</option>
+                <option value="en" selected>English(EN)</option>
+                <option value="zh-Hans">简体字(zh-Hans)</option>
+                <option value="zh-Hant">繁體字(zh-Hant)</option>
+                <option value="ko">한국어(KO)</option>
+                <option value="ru">русский язык(RU)</option>
+                <option value="fr">français(FR)</option>
+                <option value="de">Deutsch(DE)</option>
+                <option value="eo">Esperanto(EO)</option>
+                <option value="_not_">Not on the list.</option>
+            </select>
+            <input type="text" id="translate_select_by_text" placeholder="Language Code Here...">
         </div>
         <button onclick="apply();" lang="en">APPLY</button>
         <button onclick="apply();" lang="ja">適用</button>
@@ -144,6 +175,7 @@
         </div>
     </section>
     <script src="./src/i18n.js"></script>
+    <script src="./src/translate.js"></script>
     <script src="./src/mainscript.js"></script>
 </body>
 </html>

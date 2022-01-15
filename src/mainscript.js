@@ -2,6 +2,7 @@ setLanguage(['ja','en'].includes(navigator.language) ? navigator.language : 'en'
 let flag_speech = false;
 
 let rec_lang = "ja";
+let translate_lang = "en";
 
 let backend;
 (async()=>{
@@ -57,18 +58,29 @@ const updateLanguageByText = () => document.querySelector('#lang_select_by_text'
 
 const OnChangeLanguageSelector = ()=>updateLanguageByText();
 
+const updateTranslateByText = () => document.querySelector('#translate_select_by_text').hidden = document.querySelector("#translate_selector").value != "_not_";
+
+const OnChangeTranslateSelector = ()=>updateTranslateByText();
+
 const apply = ()=>{
-    const {value} = document.querySelector('#language_selector');
-    rec_lang = value != "_not_" ? value : document.querySelector('#lang_select_by_text').value;
+    {
+        const {value} = document.querySelector('#language_selector');
+        rec_lang = value != "_not_" ? value : document.querySelector('#lang_select_by_text').value;
+    }
+    {
+        const {value} = document.querySelector('#translate_selector');
+        translate_lang = value != "_not_" ? value : document.querySelector('#translate_select_by_text').value;
+    }
     document.querySelector('#result_text:not([hidden])').innerHTML = "";
     recognize();
 }
 
 updateLanguageByText();
+updateTranslateByText();
 
 
 
 
-const OnRecognitionResult = (text) => {
-    backend.sendMessageToVRC(text,"");
+const OnRecognitionResult = async (text) => {
+    backend.sendMessageToVRC(text,await translate(text,translate_lang));
 }

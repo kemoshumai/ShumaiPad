@@ -5,7 +5,8 @@
   "author": "kemoshumai <87066961+kemoshumai@users.noreply.github.com>",
   "license": "MIT",
   "dependencies": {
-    "carlo": "^0.9.46",
+    "axios": "^0.24.0",
+    "carlo": "kemoshumai/carlo",
     "robotjs": "^0.6.0",
     "win32-api": "^9.6.0"
   }
