@@ -7,7 +7,7 @@ const main = async () => {
 
     const app = await carlo.launch({
         width:400,
-        height:840
+        height:880
     });
     app.on('exit', () => process.exit());
     app.serveFolder(__dirname);

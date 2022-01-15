@@ -106,83 +106,109 @@
         .caution h4{
             text-align: center;
         }
+        body{
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-flow: column;
+            min-height: 100vh;
+        }
+        main{
+            margin: 8px;
+            flex: 1;
+        }
+        footer{
+            background-color: #F6F6F4;
+            color: rgba(0, 0, 0, 0.87);
+            margin: 0;
+            padding: 0 10px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 
 <body>
-    <h1>ShumaiPad</h1>
-    <div class="board">
-        <p class="said" id="result_text">
-            <span lang="en">Push APPLY button to start....</span>
-            <span lang="ja">適用ボタンを押してはじめる....</span>
-        </p>
-        <p class="translated" id="translated_result"></p>
-        <small lang="en">For CP and CPT</small>
-        <small lang="ja">対応バージョン：CP,CPT</small>
-    </div>
-    <section class="statusarea">
-        <p id="status" lang="en">Booted.</p>
-        <p id="status" lang="ja">起動完了</p>
-        <div class="language-selector">
-            <label for="select">
-                <span lang="ja">音声認識の言語</span>
-                <span lang="en">Speak </span>
-            </label>
-            <select id="language_selector" onchange="OnChangeLanguageSelector();">
-                <option value="ja" selected>日本語(JA)</option>
-                <option value="en">English(EN)</option>
-                <option value="zh-Hans">简体字(zh-Hans)</option>
-                <option value="zh-Hant">繁體字(zh-Hant)</option>
-                <option value="ko">한국어(KO)</option>
-                <option value="ru">русский язык(RU)</option>
-                <option value="fr">français(FR)</option>
-                <option value="de">Deutsch(DE)</option>
-                <option value="_not_">Not on the list.</option>
-            </select>
-            <input type="text" id="lang_select_by_text" placeholder="Language Code Here...">
+    <main>
+        <h1>ShumaiPad</h1>
+        <div class="board">
+            <p class="said" id="result_text">
+                <span lang="en">Push APPLY button to start....</span>
+                <span lang="ja">適用ボタンを押してはじめる....</span>
+            </p>
+            <p class="translated" id="translated_result"></p>
+            <small lang="en">For CP and CPT</small>
+            <small lang="ja">対応バージョン：CP,CPT</small>
         </div>
-        <div class="translate-selector">
-            <label for="select">
-                <span lang="ja">翻訳先の言語</span>
-                <span lang="en">Translate into</span>
-            </label>
-            <select id="translate_selector" onchange="OnChangeTranslateSelector();">
-                <option value="ja">日本語(JA)</option>
-                <option value="en" selected>English(EN)</option>
-                <option value="zh-Hans">简体字(zh-Hans)</option>
-                <option value="zh-Hant">繁體字(zh-Hant)</option>
-                <option value="ko">한국어(KO)</option>
-                <option value="ru">русский язык(RU)</option>
-                <option value="fr">français(FR)</option>
-                <option value="de">Deutsch(DE)</option>
-                <option value="eo">Esperanto(EO)</option>
-                <option value="_not_">Not on the list.</option>
-            </select>
-            <input type="text" id="translate_select_by_text" placeholder="Language Code Here...">
-        </div>
-        <button onclick="apply();" lang="en">APPLY</button>
-        <button onclick="apply();" lang="ja">適用</button>
-    </section>
-    <section>
-        <div class="box25 caution">
-            <h4 lang="ja">注意事項</h4>
-            <h4 lang="en">CAUTION!</h4>
-            <ul lang="ja">
-                <li>これは実験的な機能です。突然使えなくなることもあるかもしれません。</li>
-                <li>音声はGoogleChromeのSpeechRecognitionによってサーバーで処理されます。ためらわれる場合使用をやめてください。</li>
-                <li>自己責任で使用してください。</li>
-                <li>クリップボード(コピペ履歴)が書き換わります。ご了承ください。</li>
-            </ul>
-            <ul lang="en">
-                <li>This is experimental features.</li>
-                <li>You speech is processed on the server by Google Chrome's SpeechRecognition. If you have any hesitation, please stop using it.</li>
-                <li>Use at your own risk.</li>
-                <li>The clipboard is rewritten by the program.</li>
-            </ul>
-        </div>
-    </section>
+        <section class="statusarea">
+            <p id="status" lang="en">Booted.</p>
+            <p id="status" lang="ja">起動完了</p>
+            <div class="language-selector">
+                <label for="select">
+                    <span lang="ja">音声認識の言語</span>
+                    <span lang="en">Speak </span>
+                </label>
+                <select id="language_selector" onchange="OnChangeLanguageSelector();">
+                    <option value="ja" selected>日本語(JA)</option>
+                    <option value="en">English(EN)</option>
+                    <option value="zh-Hans">简体字(zh-Hans)</option>
+                    <option value="zh-Hant">繁體字(zh-Hant)</option>
+                    <option value="ko">한국어(KO)</option>
+                    <option value="ru">русский язык(RU)</option>
+                    <option value="fr">français(FR)</option>
+                    <option value="de">Deutsch(DE)</option>
+                    <option value="_not_">Not on the list.</option>
+                </select>
+                <input type="text" id="lang_select_by_text" placeholder="Language Code Here...">
+            </div>
+            <div class="translate-selector">
+                <label for="select">
+                    <span lang="ja">翻訳先の言語</span>
+                    <span lang="en">Translate into</span>
+                </label>
+                <select id="translate_selector" onchange="OnChangeTranslateSelector();">
+                    <option value="ja">日本語(JA)</option>
+                    <option value="en" selected>English(EN)</option>
+                    <option value="zh-Hans">简体字(zh-Hans)</option>
+                    <option value="zh-Hant">繁體字(zh-Hant)</option>
+                    <option value="ko">한국어(KO)</option>
+                    <option value="ru">русский язык(RU)</option>
+                    <option value="fr">français(FR)</option>
+                    <option value="de">Deutsch(DE)</option>
+                    <option value="eo">Esperanto(EO)</option>
+                    <option value="_not_">Not on the list.</option>
+                </select>
+                <input type="text" id="translate_select_by_text" placeholder="Language Code Here...">
+            </div>
+            <button onclick="apply();" lang="en">APPLY</button>
+            <button onclick="apply();" lang="ja">適用</button>
+        </section>
+        <section>
+            <div class="box25 caution">
+                <h4 lang="ja">注意事項</h4>
+                <h4 lang="en">CAUTION!</h4>
+                <ul lang="ja">
+                    <li>これは実験的な機能です。突然使えなくなることもあるかもしれません。</li>
+                    <li>音声はGoogleChromeのSpeechRecognitionによってサーバーで処理されます。ためらわれる場合使用をやめてください。</li>
+                    <li>自己責任で使用してください。</li>
+                    <li>クリップボード(コピペ履歴)が書き換わります。ご了承ください。</li>
+                </ul>
+                <ul lang="en">
+                    <li>This is experimental features.</li>
+                    <li>You speech is processed on the server by Google Chrome's SpeechRecognition. If you have any hesitation, please stop using it.</li>
+                    <li>Use at your own risk.</li>
+                    <li>The clipboard is rewritten by the program.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <small>Kemoshumai ShumaiPad v0.1.0</small>
+        <small><a href="javascript:about();">About this app.</a></small>
+    </footer>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./src/i18n.js"></script>
     <script src="./src/translate.js"></script>
     <script src="./src/mainscript.js"></script>
+    <script src="./src/about.js"></script>
 </body>
 </html>
