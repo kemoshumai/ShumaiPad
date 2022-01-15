@@ -3,6 +3,12 @@ let flag_speech = false;
 
 let rec_lang = "ja";
 
+let backend;
+(async()=>{
+    const [_backend] = await carlo.loadParams();
+    backend = _backend;
+})();
+
 const recognize = () => {
     const setStatusText = text => document.querySelector('#status:not([hidden])').innerHTML = text;
     const resultTextElement = document.querySelector('#result_text:not([hidden])');
@@ -58,9 +64,3 @@ const apply = ()=>{
 }
 
 updateLanguageByText();
-
-
-(async()=>{
-    const [backend] = await carlo.loadParams();
-    backend.sendMessageToVRC("aaa","bbb");
-})();
