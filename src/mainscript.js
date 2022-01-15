@@ -10,6 +10,8 @@ let backend;
     backend = _backend;
 })();
 
+const translated_result = document.querySelector('#translated_result');
+
 const recognize = () => {
     const setStatusText = text => document.querySelector('#status:not([hidden])').innerHTML = text;
     const resultTextElement = document.querySelector('#result_text:not([hidden])');
@@ -71,6 +73,7 @@ const apply = ()=>{
         const {value} = document.querySelector('#translate_selector');
         translate_lang = value != "_not_" ? value : document.querySelector('#translate_select_by_text').value;
     }
+    translated_result.innerHTML = "";
     document.querySelector('#result_text:not([hidden])').innerHTML = "";
     recognize();
 }
@@ -82,5 +85,7 @@ updateTranslateByText();
 
 
 const OnRecognitionResult = async (text) => {
-    backend.sendMessageToVRC(text,await translate(text,translate_lang));
+    const translated = await translate(text,translate_lang)
+    translated_result.innerHTML = translated;
+    backend.sendMessageToVRC(text,translated);
 }

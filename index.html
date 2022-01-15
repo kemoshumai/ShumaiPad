@@ -19,11 +19,17 @@
             background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
             box-shadow: 0 2px 5px #ccc;
         }
-        .board p{
+        .board #result_text{
             flex: 1;
             margin: 0;
             padding: 10px;
             font-size: 1.3em;
+        }
+        .board .translated{
+            flex: 1;
+            margin: 0;
+            padding: 10px;
+            font-size: 0.8em;
         }
         .board small{
             width: 100%;
@@ -106,10 +112,11 @@
 <body>
     <h1>ShumaiPad</h1>
     <div class="board">
-        <p id="result_text">
+        <p class="said" id="result_text">
             <span lang="en">Push APPLY button to start....</span>
             <span lang="ja">適用ボタンを押してはじめる....</span>
         </p>
+        <p class="translated" id="translated_result"></p>
         <small lang="en">For CP and CPT</small>
         <small lang="ja">対応バージョン：CP,CPT</small>
     </div>
