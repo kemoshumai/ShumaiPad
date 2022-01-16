@@ -47,6 +47,7 @@ const recognize = () => {
                 resultTextElement.setAttribute("class","proposal");
                 resultTextElement.innerHTML = results[i][0].transcript;
                 flag_speech = true;
+                OnProposalResult(results[i][0].transcript);
             }
         }
     }
@@ -88,4 +89,8 @@ const OnRecognitionResult = async (text) => {
     const translated = await translate(text,translate_lang)
     translated_result.innerHTML = translated;
     backend.sendMessageToVRC(text,translated);
+}
+
+const OnProposalResult = async (lasttext) => {
+    backend.setProposalMessageToVRC(lasttext);
 }

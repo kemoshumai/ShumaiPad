@@ -12,4 +12,15 @@ const sendMessageToVRC_Clipboard = (text, subtext) => {
     }
 }
 
+const setProposalMessageToVRC_Clipboard = (lasttext) => {
+    const isVRCfound = setForegroundVRChat();
+    if(isVRCfound){
+        setClipboardText(`壥${lasttext}壥`);
+        setForegroundVRChat();
+        ctrlV();
+        robot.keyTap('g');
+    }
+}
+
 module.exports.sendMessageToVRC_Clipboard = sendMessageToVRC_Clipboard;
+module.exports.setProposalMessageToVRC_Clipboard = setProposalMessageToVRC_Clipboard;
