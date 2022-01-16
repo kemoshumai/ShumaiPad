@@ -124,6 +124,11 @@
             padding: 0 10px;
             margin-top: 10px;
         }
+        .i18n-select{
+            margin: 0;
+            padding: 0;
+            font-size: small;
+        }
     </style>
 </head>
 
@@ -202,8 +207,10 @@
         </section>
     </main>
     <footer>
-        <small>Kemoshumai ShumaiPad v0.1.0</small>
+        <small>ShumaiPad v0.1.0</small>
         <small><a href="javascript:about();">About this app.</a></small>
+        <button class="i18n-select" lang="ja" onclick="setLanguage('en');">English</button>
+        <button class="i18n-select" lang="en" onclick="setLanguage('ja');">日本語</button>
     </footer>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./src/i18n.js"></script>
