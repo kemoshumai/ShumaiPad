@@ -2,6 +2,9 @@ const { setClipboardText, ctrlV } = require('./clipboard');
 const {setForegroundVRChat} = require('./setForegroundVRChat');
 const robot = require('robotjs');
 
+const decimationSpan = 5;
+let numberOfDecimated = 0;
+
 const sendMessageToVRC_Clipboard = (text, subtext) => {
     const isVRCfound = setForegroundVRChat();
     if(isVRCfound){
@@ -14,11 +17,15 @@ const sendMessageToVRC_Clipboard = (text, subtext) => {
 
 const setProposalMessageToVRC_Clipboard = (lasttext) => {
     const isVRCfound = setForegroundVRChat();
-    if(isVRCfound){
+    if(isVRCfound && numberOfDecimated == 0){
         setClipboardText(`壥${lasttext}壥`);
         setForegroundVRChat();
         ctrlV();
         robot.keyTap('g');
+    }
+    numberOfDecimated++;
+    if(decimationSpan <= numberOfDecimated){
+        numberOfDecimated = 0;
     }
 }
 
