@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>ShumaiPad v0.1.0</title>
+    <title>ShumaiPad v0.1.1</title>
     <style>
         body h1{
             text-align: center;
@@ -130,7 +130,7 @@
             font-size: small;
         }
     </style>
-    <link rel="icon" href="./res/ShumaiPadLogoMini.png">
+    <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABhmlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw1AUhU9TpUUqIhYRcchQnSyIigguUsUiWChthVYdTF76IzRpSFJcHAXXgoM/i1UHF2ddHVwFQfAHxNHJSdFFSrwvKbSI8cLjfZx3z+G9+wChXmaq2TEGqJplpOIxMZtbEQOv8KEXQfRjRmKmnkgvZOBZX/fUTXUX5VnefX9Wt5I3GeATiWeZbljE68RTm5bOeZ84zEqSQnxOPGrQBYkfuS67/Ma56LDAM8NGJjVHHCYWi20stzErGSrxJHFEUTXKF7IuK5y3OKvlKmvek78wlNeW01ynNYQ4FpFAEiJkVLGBMixEaddIMZGi85iHf9DxJ8klk2sDjBzzqECF5PjB/+D3bM3CxLibFIoBnS+2/TEMBHaBRs22v49tu3EC+J+BK63lr9SB6U/Say0tcgT0bAMX1y1N3gMud4CBJ10yJEfy0xIKBeD9jL4pB/TdAl2r7tya5zh9ADI0q6Ub4OAQGClS9prHu4Ptc/u3pzm/H5o3crf+Ja3XAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAB3RJTUUH5gERCDkQxCyHEwAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAJMSURBVEjH7VY/aBNhHH33aQZD+7m06pCpVPQG659ghQaHdIu1GimCY0kRiojYTql7napESKmQlmSpQ6QqBSFFHETiaKC0pZepppClGRIS25DvzHPKV08bKZo4+eDgu+He+7733u/uDAlBtBMSghKCU+EwLcvi38KyLE6Fw2zwokGulGKroJTSIpAQLdn5QSeREDQkBEv81hb7jxtHINBmtF3g6I83JLG6uoqVVAqZzxlkNzfRd/ECTNOE1+uFf3AQQgjMzs7i0f0HDqIrg37cuBVEMBiEx+Nx1rSBWCxGCcGhQIC5XI5KKW5vb/Px9DQlBGu1GkkyGo1SQvDm8DBJslKpMBFPUELwTE8P8/k8Se63iCSLxaLu7qulJUcj6vU6F+bnmwqQZKFQ0M8nk0ktoDNwuVw41tkBAEin08haWezt7QEADMNAaGwMLper+cBKqde7X3d/DdntdiO6MA8AiD2N4PJZE6fcHZicmMBKKqXFmqFYLOp17+negzMgybW1NT6LRHjV59NHlhAMjY6yWq0eaFG5XObzuTlKCI6FQtpKRwY/o16vc2dnR4cnIZjJZBwCjetkp+TtkRG+WFxkpVLRHBKCuqa5Lzmsb6wjEAho37u6ujDgG9j3UzjHxj88hDfLy4cftDvXruPJzAy2traglEKpVMLLZBIAcHfyIUzT/PNB6z7Rjdfv3+FTOo174+Ow1jdw3nsJ5/r68PbjB/T39/+2Rc3w/2V3OIFsNtty4ganAIBEPA7btltGbts2EvH4v/noG+3+bfkO4abCi65lxVQAAAAASUVORK5CYII=" />
 </head>
 
 <body>
@@ -193,10 +193,11 @@
                 <h4 lang="ja">注意事項</h4>
                 <h4 lang="en">CAUTION!</h4>
                 <ul lang="ja">
-                    <li>これは実験的な機能です。突然使えなくなることもあるかもしれません。</li>
-                    <li>音声はGoogleChromeのSpeechRecognitionによってサーバーで処理されます。ためらわれる場合使用をやめてください。</li>
-                    <li>自己責任で使用してください。</li>
-                    <li>クリップボード(コピペ履歴)が書き換わります。ご了承ください。</li>
+                    <li>これは<strong>実験的な機能</strong>です。突然使えなくなることもあるかもしれません。</li>
+                    <li>音声は<strong>GoogleChromeのSpeechRecognition</strong>によって<strong>サーバーで処理</strong>されます。ためらわれる場合使用をやめてください。</li>
+                    <li><strong>自己責任で使用してください。</strong></li>
+                    <li><strong>クリップボード(コピペ履歴)が書き換わります。</strong>ご了承ください。</li>
+                    <li>日本語入力モードでは動作しません。<strong>半角全角キー</strong>で直接入力に切り替えてください。</li>
                 </ul>
                 <ul lang="en">
                     <li>This is experimental features.</li>
@@ -208,7 +209,7 @@
         </section>
     </main>
     <footer>
-        <small>ShumaiPad v0.1.0</small>
+        <small>ShumaiPad v0.1.1</small>
         <small><a href="javascript:about();">About this app.</a></small>
         <button class="i18n-select" lang="ja" onclick="setLanguage('en');">English</button>
         <button class="i18n-select" lang="en" onclick="setLanguage('ja');">日本語</button>
