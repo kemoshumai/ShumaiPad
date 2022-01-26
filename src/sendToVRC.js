@@ -2,7 +2,7 @@ const { setClipboardText, ctrlV } = require('./clipboard');
 const {setForegroundVRChat} = require('./setForegroundVRChat');
 const robot = require('robotjs');
 
-const decimationSpan = 5;
+const decimationSpan = 1;
 let numberOfDecimated = 0;
 
 const sendMessageToVRC_Clipboard = (text, subtext) => {

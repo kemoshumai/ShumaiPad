@@ -91,6 +91,15 @@ const OnRecognitionResult = async (text) => {
     backend.sendMessageToVRC(text,translated);
 }
 
+let isSending = false;
+
 const OnProposalResult = async (lasttext) => {
-    backend.setProposalMessageToVRC(lasttext);
+    if(!isSending){
+        isSending = true;
+        await backend.setProposalMessageToVRC(lasttext);
+        console.log(lasttext)
+        isSending = false;
+    }else{
+        console.log("skipped")
+    }
 }
