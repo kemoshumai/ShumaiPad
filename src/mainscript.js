@@ -89,7 +89,9 @@ updateTranslateByText();
 const OnRecognitionResult = async (text) => {
     const translated = await translate(text,translate_lang)
     translated_result.innerHTML = translated;
-    backend.sendMessageToVRC(text,translated);
+    if(backend){
+        backend.sendMessageToVRC(text,translated);
+    }
 }
 
 let isSending = false;
@@ -97,7 +99,9 @@ let isSending = false;
 const OnProposalResult = async (lasttext) => {
     if(!isSending){
         isSending = true;
-        await backend.setProposalMessageToVRC(lasttext);
+        if(backend){
+            await backend.setProposalMessageToVRC(lasttext);
+        }
         console.log(lasttext)
         isSending = false;
     }else{
