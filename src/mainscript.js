@@ -24,9 +24,8 @@ const recognize = () => {
     recognition.onsoundstart = () => setStatusText(i18n("Recognizing..."));
     recognition.onnomatch = () => setStatusText(i18n("Try again!"));
     
-    recognition.onerror = () =>  {
-        console.log("Error occurred on a recognizing API!");
-        setStatusText(i18n("Error occurred!"));
+    recognition.onerror = (e) =>  {
+        console.error(e.error);
         if (flag_speech == false) recognize();
     };
 
@@ -89,7 +88,9 @@ updateTranslateByText();
 const OnRecognitionResult = async (text) => {
     const translated = await translate(text,translate_lang)
     translated_result.innerHTML = translated;
-    backend.sendMessageToVRC(text,translated);
+    if(backend){
+        backend.sendMessageToVRC(text,translated);
+    }
 }
 
 let isSending = false;
@@ -97,7 +98,9 @@ let isSending = false;
 const OnProposalResult = async (lasttext) => {
     if(!isSending){
         isSending = true;
-        await backend.setProposalMessageToVRC(lasttext);
+        if(backend){
+            await backend.setProposalMessageToVRC(lasttext);
+        }
         console.log(lasttext)
         isSending = false;
     }else{
