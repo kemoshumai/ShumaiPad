@@ -5,7 +5,7 @@ const robot = require("robotjs");
 
 
 const setClipboardText = (text) => {
-    return child_process.spawnSync(path.join(__dirname,"../bin/clipboard.exe"), ['--copy'], { input: text });
+    return child_process.spawnSync(path.join(__dirname,"../bin/clipboard.exe"), ['--copy'], { input: text, shell: false });
 }
 
 const ctrlV = () => robot.keyTap("v", "control");
