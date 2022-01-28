@@ -24,9 +24,8 @@ const recognize = () => {
     recognition.onsoundstart = () => setStatusText(i18n("Recognizing..."));
     recognition.onnomatch = () => setStatusText(i18n("Try again!"));
     
-    recognition.onerror = () =>  {
-        console.log("Error occurred on a recognizing API!");
-        setStatusText(i18n("Error occurred!"));
+    recognition.onerror = (e) =>  {
+        console.error(e.error);
         if (flag_speech == false) recognize();
     };
 
