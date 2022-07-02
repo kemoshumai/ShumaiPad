@@ -7,4 +7,7 @@ module.exports = class RPCHandle{
     setProposalMessageToVRC(lasttext){
         setProposalMessageToVRC_Clipboard(lasttext);
     }
+    debugLog(...text){
+        console.log(...text);
+    }
 }

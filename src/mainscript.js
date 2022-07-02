@@ -10,6 +10,16 @@ let backend;
     backend = _backend;
 })();
 
+window.console.log = (...text) => {
+    backend.debugLog("\x1b[36m[Log]\x1b[39m", ...text);
+}
+window.console.error = (...text) => {
+    backend.debugLog("\x1b[31m[Error]\x1b[39m", ...text);
+}
+window.console.warn = (...text) => {
+    backend.debugLog("\x1b[33m[Warn]\x1b[39m", ...text);
+}
+
 const translated_result = document.querySelector('#translated_result');
 
 const recognize = () => {
