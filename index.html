@@ -211,9 +211,17 @@
     </main>
     <footer>
         <small>ShumaiPad v0.1.2</small>
-        <small><a href="javascript:about();">About this app.</a></small>
         <button class="i18n-select" lang="ja" onclick="setLanguage('en');">English</button>
         <button class="i18n-select" lang="en" onclick="setLanguage('ja');">日本語</button>
+        <br>
+        <small><a href="javascript:about();">
+            <span lang="ja">このアプリについて</span>
+            <span lang="en">About this app.</span>
+        </a></small><br>
+        <small><a href="javascript:showlicense();">
+            <span lang="ja">ライセンス</span>
+            <span lang="en">License</span>
+        </a></small>
     </footer>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./src/i18n.js"></script>

@@ -6,3 +6,7 @@ const about = () => {
         Made by Kemoshumai.`
     });
 }
+
+const showlicense = () => {
+    location.href = "license.html";
+}
