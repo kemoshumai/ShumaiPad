@@ -1,4 +1,5 @@
-const { sendMessageToVRC_Clipboard,setProposalMessageToVRC_Clipboard } = require("./sendToVRC")
+const { sendMessageToVRC_Clipboard,setProposalMessageToVRC_Clipboard } = require("./sendToVRC");
+const { startRecognizeWithVosk, stopRecognizeWithVosk } = require("./vosk");
 
 module.exports = class RPCHandle{
     sendMessageToVRC(text,subtext){
@@ -9,5 +10,11 @@ module.exports = class RPCHandle{
     }
     debugLog(...text){
         console.log(...text);
+    }
+    startRecognizeWithVosk(target){
+        startRecognizeWithVosk(target);
+    }
+    stopRecognizeWithVosk(){
+        stopRecognizeWithVosk();
     }
 }

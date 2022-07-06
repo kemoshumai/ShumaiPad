@@ -1,11 +1,15 @@
-setLanguage(['ja','en'].includes(navigator.language) ? navigator.language : 'en');
+const setStatusText = text => document.querySelector('#status:not([hidden])').innerHTML = text;
+const resultTextElement = document.querySelector('#result_text:not([hidden])');
+
+setLanguage(['ja', 'en'].includes(navigator.language) ? navigator.language : 'en');
 let flag_speech = false;
 
 let rec_lang = "ja";
 let translate_lang = "en";
+let recognition = null;
 
 let backend;
-(async()=>{
+(async () => {
     const [_backend] = await carlo.loadParams();
     backend = _backend;
 })();
@@ -23,17 +27,15 @@ window.console.warn = (...text) => {
 const translated_result = document.querySelector('#translated_result');
 
 const recognize = () => {
-    const setStatusText = text => document.querySelector('#status:not([hidden])').innerHTML = text;
-    const resultTextElement = document.querySelector('#result_text:not([hidden])');
     window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
-    const recognition = new webkitSpeechRecognition();
+    recognition = new webkitSpeechRecognition();
     recognition.lang = rec_lang;
     recognition.interimResults = true;
     recognition.continuous = true;
 
     recognition.onsoundstart = () => setStatusText(i18n("Recognizing..."));
     recognition.onnomatch = () => setStatusText(i18n("Try again!"));
-    
+
     recognition.onerror = (e) =>  {
         console.error(e.error);
         if (flag_speech == false) recognize();
@@ -48,14 +50,10 @@ const recognize = () => {
         const {results} = event;
         for (let i = event.resultIndex; i < results.length; i++) {
             if (results[i].isFinal) {
-                resultTextElement.setAttribute("class","");
-                resultTextElement.innerHTML = results[i][0].transcript;
                 OnRecognitionResult(results[i][0].transcript);
                 recognize();
             }
             else {
-                resultTextElement.setAttribute("class","proposal");
-                resultTextElement.innerHTML = results[i][0].transcript;
                 flag_speech = true;
                 OnProposalResult(results[i][0].transcript);
             }
@@ -64,6 +62,13 @@ const recognize = () => {
     flag_speech = false;
     setStatusText(i18n("Listening..."));
     recognition.start();
+}
+
+const recognizeWithVosk = () => {
+    if(recognition){
+        recognition.stop();
+    }
+    backend.startRecognizeWithVosk(rec_lang);
 }
 
 
@@ -86,17 +91,42 @@ const apply = ()=>{
     }
     translated_result.innerHTML = "";
     document.querySelector('#result_text:not([hidden])').innerHTML = "";
-    recognize();
+    if(rec_lang == "eo"){
+        recognizeWithVosk();
+        const wssock = new WebSocket('ws://127.0.0.1:56573');
+        wssock.addEventListener('open', ()=>console.log("WS Connection OK."));
+        wssock.addEventListener('message', OnVosk);
+    }else{
+        backend.stopRecognizeWithVosk();
+        recognize();
+    }
 }
 
 updateLanguageByText();
 updateTranslateByText();
 
 
-
+const OnVosk = (received) => {
+    const {data} = received;
+    const [type, ...receivedtext] = data.split(":");
+    const text = receivedtext?.length ? receivedtext.join() : receivedtext;
+    if(!text) return;
+    switch(type){
+        case "partial":{
+            OnProposalResult(text);
+            break;
+        }
+        case "text":{
+            OnRecognitionResult(text);
+            break;
+        }
+    }
+}
 
 const OnRecognitionResult = async (text) => {
-    const translated = await translate(text,translate_lang)
+    resultTextElement.setAttribute("class","");
+    resultTextElement.innerHTML = text;
+    const translated = await translate(text,translate_lang,rec_lang)
     translated_result.innerHTML = translated;
     if(backend){
         backend.sendMessageToVRC(text,translated);
@@ -106,6 +136,8 @@ const OnRecognitionResult = async (text) => {
 let isSending = false;
 
 const OnProposalResult = async (lasttext) => {
+    resultTextElement.setAttribute("class","proposal");
+    resultTextElement.innerHTML = lasttext;
     if(!isSending){
         isSending = true;
         if(backend){
@@ -114,6 +146,6 @@ const OnProposalResult = async (lasttext) => {
         console.log(lasttext)
         isSending = false;
     }else{
-        console.log("skipped")
+        console.log("skipped");
     }
 }
