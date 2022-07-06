@@ -44,10 +44,12 @@ const stopRecognizeWithVosk = () => {
     console.log("killing....:", voskpid);
     if (voskpid) process.kill(voskpid);
     if (wsvoskserver) wsvoskserver.close();
-    if (watcher) watcher.close().then(() => console.log("The watcher closed."));
+    if (watcher) watcher.close().then(() => {
+        console.log("The watcher closed.");
+        watcher = null;
+    });
     voskpid = null;
     wsvoskserver = null;
-    watcher = null;
 }
 
 
