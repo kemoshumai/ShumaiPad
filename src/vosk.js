@@ -18,13 +18,7 @@ const startRecognizeWithVosk = async (target) => {
     if (voskpid && isRunning(voskpid)) process.kill(voskpid);
     if (!wsvoskserver) wsvoskserver = new wsserver({ port: 56573 });
 
-    let proc = child_process.exec(`${voskwrappath} -t ${target} -n` , (err, stdout, stderr) => {
-        if (err) {
-            console.log(`stderr: ${stderr}`);
-            return;
-        }
-        console.log(`stdout: ${stdout}`);
-    });
+    let proc = child_process.spawn(voskwrappath, ["-t", target, "-n"], { windowsHide:true });
     voskpid = proc.pid;
     console.log("vosk child process:", voskpid);
 
