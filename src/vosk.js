@@ -35,6 +35,7 @@ const startRecognizeWithVosk = async (target) => {
     });
     watcher.on('ready', () => {
         console.log("Watching voskwrap result file....");
+        wsvoskserver.clients.forEach((client) => client.send("ready:ready"));
         watcher.on('change', (filepath) => {
             if (path.basename(filepath) == "result.txt") {
                 text = fs.readFileSync(filepath).toString();

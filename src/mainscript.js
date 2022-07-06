@@ -1,5 +1,4 @@
 const setStatusText = text => document.querySelector('#status:not([hidden])').innerHTML = text;
-const resultTextElement = document.querySelector('#result_text:not([hidden])');
 
 setLanguage(['ja', 'en'].includes(navigator.language) ? navigator.language : 'en');
 let flag_speech = false;
@@ -92,6 +91,7 @@ const apply = ()=>{
     translated_result.innerHTML = "";
     document.querySelector('#result_text:not([hidden])').innerHTML = "";
     if(rec_lang == "eo"){
+        setStatusText(i18n("Launching VOSK engine..."));
         recognizeWithVosk();
         const wssock = new WebSocket('ws://127.0.0.1:56573');
         wssock.addEventListener('open', ()=>console.log("WS Connection OK."));
@@ -112,6 +112,10 @@ const OnVosk = (received) => {
     const text = receivedtext?.length ? receivedtext.join() : receivedtext;
     if(!text) return;
     switch(type){
+        case "ready":{
+            setStatusText(i18n("Listening..."));
+            break;
+        }
         case "partial":{
             OnProposalResult(text);
             break;
@@ -124,6 +128,7 @@ const OnVosk = (received) => {
 }
 
 const OnRecognitionResult = async (text) => {
+    const resultTextElement = document.querySelector('#result_text:not([hidden])');
     resultTextElement.setAttribute("class","");
     resultTextElement.innerHTML = text;
     const translated = await translate(text,translate_lang,rec_lang)
@@ -136,6 +141,7 @@ const OnRecognitionResult = async (text) => {
 let isSending = false;
 
 const OnProposalResult = async (lasttext) => {
+    const resultTextElement = document.querySelector('#result_text:not([hidden])');
     resultTextElement.setAttribute("class","proposal");
     resultTextElement.innerHTML = lasttext;
     if(!isSending){

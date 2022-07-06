@@ -36,5 +36,9 @@ const langDictionary = {
     "Listening...":{
         "en":"Listening...",
         "ja":"音声入力受付中"
+    },
+    "Launching VOSK engine...":{
+        "en":"Launching VOSK engine....",
+        "ja":"VOSKエンジンを起動中...."
     }
 }
