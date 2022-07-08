@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>ShumaiPad v0.1.2</title>
+    <title>ShumaiPad v0.2.0</title>
     <style>
         body h1{
             text-align: center;
@@ -162,6 +162,7 @@
                     <option value="ru">русский язык(RU)</option>
                     <option value="fr">français(FR)</option>
                     <option value="de">Deutsch(DE)</option>
+                    <option value="eo">Esperanto(EO)[VOSK]</option>
                     <option value="_not_">Not on the list.</option>
                 </select>
                 <input type="text" id="lang_select_by_text" placeholder="Language Code Here...">
@@ -194,14 +195,14 @@
                 <h4 lang="en">CAUTION!</h4>
                 <ul lang="ja">
                     <li>これは<strong>実験的な機能</strong>です。突然使えなくなることもあるかもしれません。</li>
-                    <li>音声は<strong>GoogleChromeのSpeechRecognition</strong>によって<strong>サーバーで処理</strong>されます。ためらわれる場合使用をやめてください。</li>
+                    <li>音声はVOSKを除き<strong>GoogleChromeのSpeechRecognition</strong>によって<strong>サーバーで処理</strong>されます。ためらわれる場合使用をやめてください。</li>
                     <li><strong>自己責任で使用してください。</strong></li>
                     <li><strong>クリップボード(コピペ履歴)が書き換わります。</strong>ご了承ください。</li>
                     <li>日本語入力モードでは動作しません。<strong>半角全角キー</strong>で直接入力に切り替えてください。</li>
                 </ul>
                 <ul lang="en">
                     <li>This is experimental features.</li>
-                    <li>You speech is processed on the server by Google Chrome's SpeechRecognition. If you have any hesitation, please stop using it.</li>
+                    <li>Your speech is processed on the server by Google Chrome's SpeechRecognition except when using VOSK. If you have any hesitation at all, please stop using it.</li>
                     <li>Use at your own risk.</li>
                     <li>The clipboard is rewritten by the program.</li>
                 </ul>
@@ -209,10 +210,18 @@
         </section>
     </main>
     <footer>
-        <small>ShumaiPad v0.1.2</small>
-        <small><a href="javascript:about();">About this app.</a></small>
+        <small>ShumaiPad v0.2.0</small>
         <button class="i18n-select" lang="ja" onclick="setLanguage('en');">English</button>
         <button class="i18n-select" lang="en" onclick="setLanguage('ja');">日本語</button>
+        <br>
+        <small><a href="javascript:about();">
+            <span lang="ja">このアプリについて</span>
+            <span lang="en">About this app.</span>
+        </a></small><br>
+        <small><a href="javascript:showlicense();">
+            <span lang="ja">ライセンス</span>
+            <span lang="en">License</span>
+        </a></small>
     </footer>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./src/i18n.js"></script>
