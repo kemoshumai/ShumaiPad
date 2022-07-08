@@ -9,7 +9,7 @@ const isRunning = require("is-running")
 const voskwrappath = path.join(__dirname, "../bin/voskwrap/voskwrap.exe");
 let voskpid = null;
 
-let wsvoskserver;
+let wsvoskserver = new wsserver({ port: 56573 });
 let watcher;
 
 const startRecognizeWithVosk = async (target) => {
