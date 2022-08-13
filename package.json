@@ -9,6 +9,8 @@
     "carlo": "kemoshumai/carlo",
     "chokidar": "^3.5.3",
     "is-running": "^2.1.0",
+    "jaconv": "^1.0.4",
+    "kuromoji": "^0.1.2",
     "net": "^1.0.2",
     "node-osc": "^8.0.4",
     "robotjs": "^0.6.0",
