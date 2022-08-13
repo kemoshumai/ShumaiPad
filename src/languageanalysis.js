@@ -12,8 +12,6 @@ const japaneseToRomaji = (text) => {
 
     const tokenized = tokenizer.tokenize(text);
 
-    console.log(tokenized);
-
     const kana = jaconv.toHiragana(tokenized.map(t=>t.reading||t.surface_form).join(" ")).replaceAll("っ ","っ").replaceAll("。",".").replaceAll("、",",");
 
     return jaconv.toHebon(kana).toLowerCase();
